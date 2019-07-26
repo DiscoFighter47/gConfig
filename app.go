@@ -5,6 +5,7 @@ import (
 	"sync"
 	"time"
 
+	gson "github.com/DiscoFighter47/gSON"
 	"github.com/spf13/viper"
 )
 
@@ -18,24 +19,24 @@ type AppCfg struct {
 }
 
 func (app *AppCfg) validate() {
-	errC := configError{}
+	errV := gson.ValidationError{}
 	if app.Port == 0 {
-		errC.add("app.port", "missing")
+		errV.Add("app.port", "missing")
 	}
 	if app.ReadTimeout == 0 {
-		errC.add("app.read_timeout", "missing")
+		errV.Add("app.read_timeout", "missing")
 	}
 	if app.WriteTimeout == 0 {
-		errC.add("app.write_timeout", "missing")
+		errV.Add("app.write_timeout", "missing")
 	}
 	if app.IdelTimeout == 0 {
-		errC.add("app.idle_timeout", "missing")
+		errV.Add("app.idle_timeout", "missing")
 	}
 	if app.GraceTimeout == 0 {
-		errC.add("app.grace_timeout", "missing")
+		errV.Add("app.grace_timeout", "missing")
 	}
-	if len(errC) > 0 {
-		log.Fatal("App Configuration Error:", errC)
+	if len(errV) > 0 {
+		log.Fatal("App Configuration Error:", errV)
 	}
 }
 
