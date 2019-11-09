@@ -1,15 +1,17 @@
-package config
+package gconfig
 
 import (
 	"log"
 
 	gero "github.com/DiscoFighter47/gEro"
 	"github.com/spf13/viper"
+
 	// viper/remote
 	_ "github.com/spf13/viper/remote"
 )
 
-func init() {
+// ReadConfig ...
+func ReadConfig() {
 	viper.BindEnv("consul_url")
 	viper.BindEnv("consul_path")
 

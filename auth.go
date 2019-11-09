@@ -1,4 +1,4 @@
-package config
+package gconfig
 
 import (
 	"log"
@@ -9,13 +9,13 @@ import (
 	"github.com/spf13/viper"
 )
 
-// AuthCfg ..
-type AuthCfg struct {
+// AuthConf ..
+type AuthConf struct {
 	Secret             string
 	TokenExpireTimeout time.Duration
 }
 
-func (auth *AuthCfg) validate() {
+func (auth *AuthConf) validate() {
 	errV := gero.ValidationError{}
 	if auth.Secret == "" {
 		errV.Add("auth.secret", "missing")
@@ -28,18 +28,18 @@ func (auth *AuthCfg) validate() {
 	}
 }
 
-var auth *AuthCfg
+var auth *AuthConf
 var authOnce sync.Once
 
 func loadAuth() {
-	auth = &AuthCfg{
+	auth = &AuthConf{
 		Secret:             viper.GetString("auth.secret"),
 		TokenExpireTimeout: viper.GetDuration("auth.token_expire_timeout") * time.Minute,
 	}
 }
 
 // Auth ...
-func Auth() *AuthCfg {
+func Auth() *AuthConf {
 	authOnce.Do(func() {
 		loadAuth()
 		auth.validate()
