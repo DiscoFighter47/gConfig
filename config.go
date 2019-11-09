@@ -3,8 +3,7 @@ package config
 import (
 	"log"
 
-	gson "github.com/DiscoFighter47/gSON"
-
+	gero "github.com/DiscoFighter47/gEro"
 	"github.com/spf13/viper"
 	// viper/remote
 	_ "github.com/spf13/viper/remote"
@@ -14,7 +13,7 @@ func init() {
 	viper.BindEnv("consul_url")
 	viper.BindEnv("consul_path")
 
-	errV := gson.ValidationError{}
+	errV := gero.ValidationError{}
 
 	if viper.GetString("consul_url") == "" {
 		errV.Add("CONSUL_URL", "missing")

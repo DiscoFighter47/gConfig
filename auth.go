@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	gson "github.com/DiscoFighter47/gSON"
+	gero "github.com/DiscoFighter47/gEro"
 	"github.com/spf13/viper"
 )
 
@@ -16,7 +16,7 @@ type AuthCfg struct {
 }
 
 func (auth *AuthCfg) validate() {
-	errV := gson.ValidationError{}
+	errV := gero.ValidationError{}
 	if auth.Secret == "" {
 		errV.Add("auth.secret", "missing")
 	}
