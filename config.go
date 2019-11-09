@@ -1,8 +1,6 @@
 package gconfig
 
 import (
-	"log"
-
 	gero "github.com/DiscoFighter47/gEro"
 	"github.com/spf13/viper"
 
@@ -32,6 +30,6 @@ func ReadConfig() {
 	}
 
 	if len(errV) > 0 {
-		log.Fatal("Configuration Error:", errV)
+		logger.Fatal("Configuration Error:", errV)
 	}
 }

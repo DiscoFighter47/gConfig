@@ -1,7 +1,6 @@
 package gconfig
 
 import (
-	"log"
 	"sync"
 	"time"
 
@@ -24,12 +23,12 @@ func (auth *AuthConf) validate() {
 		errV.Add("auth.token_expire_timeout", "missing")
 	}
 	if len(errV) > 0 {
-		log.Fatal("Auth Configuration Error:", errV)
+		logger.Fatal("Auth Configuration Error:", errV)
 	}
 }
 
 var auth *AuthConf
-var authOnce sync.Once
+var authOnce *sync.Once = new(sync.Once)
 
 func loadAuth() {
 	auth = &AuthConf{
